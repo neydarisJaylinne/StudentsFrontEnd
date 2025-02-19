@@ -1,6 +1,6 @@
 # Proyecto Angular - Gestión Escolar
 
-Este es un proyecto desarrollado en Angular que permite la gestión de relaciones entre alumnos y grados, profesores y estudiantes. El backend de este proyecto se encuentra en otro repositorio llamado `[StudentsBackEnd](https://github.com/neydarisJaylinne/StudentsBackEnd)`, se recomienda verificar que el backend esté en ejecución antes de iniciar la aplicación Angular.
+Este es un proyecto desarrollado en Angular que permite la gestión de relaciones entre alumnos y grados, profesores y estudiantes. El backend de este proyecto se encuentra en otro repositorio llamado `https://github.com/neydarisJaylinne/StudentsBackEnd`, se recomienda verificar que el backend esté en ejecución antes de iniciar la aplicación Angular.
 
 ## Características
 - **Administración de alumnos y grados**: Asignación de alumnos a distintos grados.
@@ -31,7 +31,7 @@ Antes de comenzar, asegúrate de tener instalado:
    ```sh
    ng serve
    ```
-5. Accede a la aplicación en [StudentsFrontEnd](http://localhost:4200).
+5. Accede a la aplicación en http://localhost:4200.
 
 ## Estructura del Proyecto
 ```
