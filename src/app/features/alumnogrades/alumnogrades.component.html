@@ -1,0 +1,56 @@
+<div>
+    <h2>Relaciones Alumnos - Grados</h2>
+  
+    <!-- Formulario para agregar relaciones -->
+    <form (ngSubmit)="addStudentGrade()">
+      <label for="student">Seleccionar Alumno:</label>
+      <select [(ngModel)]="newStudentGrade.studentId" name="student" required>
+        <option *ngFor="let student of students" [value]="student.id">
+          {{ student.name }} {{ student.lastName }}
+        </option>
+      </select>
+  
+      <label for="grade">Seleccionar Grado:</label>
+      <select [(ngModel)]="newStudentGrade.gradeId" name="grade" required>
+        <option *ngFor="let grade of grades" [value]="grade.id">
+          {{ grade.name }}
+        </option>
+      </select>
+  
+      <label for="section">Sección:</label>
+      <input
+        type="text"
+        [(ngModel)]="newStudentGrade.section"
+        name="section"
+        placeholder="Ej: A, B, C"
+        required
+      />
+  
+      <button type="submit">Asignar Alumno a Grado</button>
+    </form>
+  
+    <hr />
+  
+    <!-- Listado de relaciones existentes -->
+    <table>
+      <thead>
+        <tr>
+          <th>Alumno</th>
+          <th>Grado</th>
+          <th>Sección</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sg of studentGrades">
+          <td>{{ sg.studentName }}</td>
+          <td>{{ sg.gradeName }}</td>
+          <td>{{ sg.section }}</td>
+          <td>
+            <button (click)="deleteStudentGrade(sg.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

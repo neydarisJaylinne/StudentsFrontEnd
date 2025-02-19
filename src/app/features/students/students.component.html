@@ -1,0 +1,97 @@
+<h2>Lista de Estudiantes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre Completo</th>
+      <!-- <th>Apellidos</th> -->
+      <th>Género</th>
+      <th>Fecha Nacimiento</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{ student.id }}</td>
+      <td>{{ student.name }} {{ student.lastName }}</td>
+      <!-- <td>{{ student.lastName }}</td> -->
+      <td>{{ student.gender }}</td>
+      <td>{{ student.birthDate }}</td>
+      <td>
+        <button (click)="editStudent(student)">Editar</button>
+        <button (click)="deleteAlert()">Eliminar</button>
+        <!-- <div id="deleteDiv">
+          <p>Estas seguro de eliminar</p>
+          <button (click)="deleteStudent(student.id)" >yes</button>
+        </div> -->
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Formulario para editar estudiante -->
+<div *ngIf="selectedStudent">
+  <h3>Editar Estudiante</h3>
+  <form (ngSubmit)="updateStudent()">
+    <label>
+      Nombre:
+      <input [(ngModel)]="selectedStudent.name" name="editName" pattern="^[a-zA-Z\s]*$" #editName="ngModel" required />
+         <!-- <input [(ngModel)]="selectedStudent.gender" name="editGender" required /> -->
+          <!-- <div *ngIf="editName.errors?.pattern && editName.touched" >
+            Solo se permiten letras
+          </div> -->
+    </label>
+    <label>
+      Apellidos:
+      <input [(ngModel)]="selectedStudent.lastName" name="editLastName" pattern="^[a-zA-Z\s]*$" required />
+    </label>
+    <label>
+      Género:
+      <!-- <input [(ngModel)]="selectedStudent.gender" name="editGender" required /> -->
+      <select name="gender" [(ngModel)]="selectedStudent.gender">
+        <option value="Female">F</option>
+        <option value="Male" selected>M</option>
+        <option value="Other">Other</option>
+      </select>
+    </label>
+
+    
+
+    <label>
+      Fecha Nacimiento:
+      <input [(ngModel)]="selectedStudent.birthDate" name="editBirthDate" type="date" required />
+    </label>
+    <button type="submit">Actualizar</button>
+    <button type="button" (click)="cancelEdit()">Cancelar</button>
+  </form>
+</div>
+
+<!-- Formulario para agregar nuevo estudiante -->
+<div>
+  <h3>Agregar Estudiante</h3>
+  <form (ngSubmit)="addStudent(newStudentForm.value)" #newStudentForm="ngForm">
+    <label>
+      Nombre:
+      <input ngModel name="name" pattern="^[a-zA-Z\s]*$" required />      
+    </label>
+    <label>
+      Apellidos:
+      <input ngModel name="lastName" pattern="^[a-zA-Z\s]*$" required />
+    </label>
+    <label>
+      Género:
+      <select ngModel name="gender" required>
+        <option value="Female">F</option>
+        <option value="Male" selected>M</option>
+        <option value="Other">Other</option>
+      </select>
+      <!-- <input ngModel name="gender" required /> -->
+    </label>
+    <label>
+      Fecha Nacimiento:
+      <input ngModel name="birthDate" type="date" required />
+    </label>
+    <button type="submit" [disabled]="newStudentForm.invalid">Agregar</button>
+  </form>
+</div>

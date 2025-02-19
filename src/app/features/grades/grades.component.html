@@ -1,0 +1,53 @@
+<h2>Lista de Grados</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Profesor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let grade of grades">
+      <td>{{ grade.id }}</td>
+      <td>{{ grade.name }}</td>
+      <td>{{ grade.teacherId }}</td>
+      <td>
+        <button (click)="editGrade(grade)">Editar</button>
+        <button (click)="deleteGrade(grade.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="selectedGrade">
+  <h3>Editar Grado</h3>
+  <form (ngSubmit)="updateGrade()">
+    <label>
+      Nombre:
+      <input [(ngModel)]="selectedGrade.name" name="editName" required />
+    </label>
+    <label>
+      Profesor:
+      <input [(ngModel)]="selectedGrade.teacherId" name="editLastName" required />
+    </label>
+    <button type="submit">Actualizar</button>
+    <button type="button" (click)="cancelEdit()">Cancelar</button>
+  </form>
+</div>
+
+<div>
+  <h3>Agregar Grado</h3>
+  <form (ngSubmit)="addGrade(newGradeForm.value)" #newGradeForm="ngForm">
+    <label>
+      Nombre:
+      <input ngModel name="name" required />
+    </label>
+    <label>
+      IdProfesor:
+      <input ngModel name="teacherId" required />
+    </label>
+    <button type="submit" [disabled]="newGradeForm.invalid">Agregar</button>
+  </form>
+</div>

@@ -1,0 +1,64 @@
+<h2>Lista de Profesores</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Género</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let teacher of teachers">
+      <td>{{ teacher.id }}</td>
+      <td>{{ teacher.name }}</td>
+      <td>{{ teacher.lastName }}</td>
+      <td>{{ teacher.gender }}</td>
+      <td>
+        <button (click)="editTeacher(teacher)">Editar</button>
+        <button (click)="deleteTeacher(teacher.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="selectedTeacher">
+  <h3>Editar Profesor</h3>
+  <form (ngSubmit)="updateTeacher()">
+    <label>
+      Nombre:
+      <input [(ngModel)]="selectedTeacher.name" name="editName" required />
+    </label>
+    <label>
+      Apellidos:
+      <input [(ngModel)]="selectedTeacher.lastName" name="editLastName" required />
+    </label>
+    <label>
+      Género:
+      <input [(ngModel)]="selectedTeacher.gender" name="editGender" required />
+    </label>
+    <button type="submit">Actualizar</button>
+    <button type="button" (click)="cancelEdit()">Cancelar</button>
+  </form>
+</div>
+
+<div>
+  <h3>Agregar Profesor</h3>
+  <form (ngSubmit)="addTeacher(newTeacherForm.value)" #newTeacherForm="ngForm">
+    <label>
+      Nombre:
+      <input ngModel name="name" required />
+    </label>
+    <label>
+      Apellidos:
+      <input ngModel name="lastName" required />
+    </label>
+    <label>
+      Género:
+      <input ngModel name="gender" required />
+    </label>
+    <button type="submit" [disabled]="newTeacherForm.invalid">Agregar</button>
+  </form>
+</div>
